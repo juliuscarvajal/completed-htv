@@ -1,5 +1,6 @@
 import Koa from 'koa';
 
+const port = process.env.PORT || 3000;
 const app = new Koa();
 
 app.use(async (ctx, next) => {
@@ -11,4 +12,4 @@ app.use(ctx => {
   console.log('>>>>eeee');
 });
 
-app.listen(3000);
+app.listen(port);
