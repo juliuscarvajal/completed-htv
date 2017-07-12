@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/juliuscarvajal/completed-htv#readme",
   "dependencies": {
-    "koa": "^2.3.0"
+    "koa": "^2.3.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1"
   },
   "devDependencies": {
     "babel-polyfill": "^6.23.0",
