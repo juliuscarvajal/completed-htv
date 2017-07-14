@@ -9,14 +9,15 @@ export const parse = (request) => {
 
   const addressFields = ['buildingNumber', 'street', 'suburb', 'state', 'postcode'];
   const combineAddressFields = address => values(pick(address, addressFields)).join(' ');
+  const summary = work => ({
+    type: work.type,
+    workflow: work.workflow,
+    concataddress: combineAddressFields(work.address)
+  });
 
   const filtered = works
     .filter(completedHtvs)
-    .map(work => ({
-      type: work.type,
-      workflow: work.workflow,
-      concataddress: combineAddressFields(work.address)
-    }));
+    .map(summary);
 
   return { response: filtered };
 };
