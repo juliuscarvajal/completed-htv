@@ -6,12 +6,14 @@ import { validate } from './validate';
 
 describe('Validate payload', () => {
   it('should validate payload and return true if valid', (done) => {
-    assert(validate(requestPayload));
+    assert(validate(requestPayload).valid);
     done();
   });
 
   it('should validate payload and return false if invalid', (done) => {
-    assert(!validate(requestInvalidPayload));
+    const v = validate(requestInvalidPayload);
+    assert(!v.valid);
+    assert.isNotEmpty(v.errors);
     done();
   });
 })

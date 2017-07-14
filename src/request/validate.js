@@ -1,38 +1,18 @@
 import { Validator } from 'jsonschema';
-
-const required = type => ({ type, required: true });
-const schema = {
-  ...required('object'),
-  properties: {
-    payload: {
-      ...required('array'),
-      items: {
-        type: "object",
-        properties: {
-          address: {
-            ...required('object'),
-            properties: {
-              buildingNumber: required('string'),
-              street: required('string'),
-              suburb: required('string'),
-              state: required('string'),
-              postcode: required('string'),
-            }
-          },
-          type: required('string'),
-          workflow: required('string'),
-        }
-      }
-    }
-  }
-}
+import { schema } from './schema';
 
 export const validate = (request) => {
   try {
     const v = new Validator();
     const validation = v.validate(request, schema);
-    return validation.valid;
+    const hasErrors = validation.errors.length > 0;
+    const formatError = e => `${e.property} ${e.message}`;
+    const errors = hasErrors && {
+      errors: validation.errors.map(formatError)
+    };
+
+    return { valid: validation.valid, ...errors };
   } catch (err) {
-    return false;
+    return { valid: false, errors: err.message };
   }
 };
