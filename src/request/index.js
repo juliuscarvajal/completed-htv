@@ -1,7 +1,7 @@
-import Parse from './parse';
-import Validate from './validate';
+import { parse } from './parse';
+import { validate } from './validate';
 
 export {
-  Parse,
-  Validate,
+  parse,
+  validate,
 };
