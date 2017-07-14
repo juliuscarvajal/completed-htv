@@ -126,23 +126,24 @@ const requestPayload = {
 const expectedResponse = {
   "response": [
     {
-      "concataddress": "28 Donington Ave Georges Hall NSW 2198",
+      "concataddress": "Level 6 146 Arthur Street North Sydney NSW 2060",
       "type": "htv",
       "workflow": "completed"
     },
     {
-      "concataddress": "25 Mary St Brisbane QLD 4000",
+      "concataddress": "360 Elizabeth St Melbourne VIC 3000",
       "type": "htv",
       "workflow": "completed"
     }
   ]
 };
 
-const assert = require('chai').assert;
+import { assert } from 'chai';
+import { parse } from './parse';
 
 describe('Filter payload', () => {
   it('should filter by workflow: completed and type: htv', (done) => {
-    assert(false);
+    assert.deepEqual(parse(requestPayload), expectedResponse);
     done();
   });
 })
